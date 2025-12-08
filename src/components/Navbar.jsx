@@ -47,7 +47,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }} className="navbar-links">
                     {['Features', 'Simulation', 'Contact'].map((item) => (
                         <a
                             key={item}
@@ -64,9 +64,11 @@ const Navbar = () => {
                             {item}
                         </a>
                     ))}
-                    <button className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem' }}>
-                        Request Demo
-                    </button>
+                    <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0VGd0fGvXvYvXvYvXv" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <button className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem' }}>
+                            Request Demo
+                        </button>
+                    </a>
                 </div>
             </div>
         </nav>

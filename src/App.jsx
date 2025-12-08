@@ -22,9 +22,10 @@ function App() {
               <p style={{ fontSize: '1.2rem', color: '#a0a0b0', marginBottom: '3rem' }}>
                 Join the next generation of space companies building on <span style={{ fontFamily: 'Radnika Next, sans-serif', fontWeight: 700 }}>naveria space</span>.
               </p>
-              <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-                <button className="btn btn-primary">Schedule Demo</button>
-                <button className="btn btn-outline">Contact Sales</button>
+              <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0VGd0fGvXvYvXvYvXv" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                  <button className="btn btn-primary">Schedule Demo</button>
+                </a>
               </div>
             </div>
           </div>
