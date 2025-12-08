@@ -64,7 +64,7 @@ const Navbar = () => {
                             {item}
                         </a>
                     ))}
-                    <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0VGd0fGvXvYvXvYvXv" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                    <a href="https://cal.com/naveria.space" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <button className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem' }}>
                             Request Demo
                         </button>

@@ -22,7 +22,7 @@ const Hero = () => {
                         </h2>
 
                         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                            <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0VGd0fGvXvYvXvYvXv" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                            <a href="https://cal.com/naveria.space" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                                 <button className="btn btn-primary">
                                     Request Demo
                                 </button>
