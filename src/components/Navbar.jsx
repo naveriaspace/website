@@ -48,10 +48,14 @@ const Navbar = () => {
                 </div>
 
                 <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }} className="navbar-links">
-                    {['Features', 'Simulation', 'Contact'].map((item) => (
+                    {[
+                        { label: 'Platform', href: '#platform' },
+                        { label: 'Segments', href: '#segments' },
+                        { label: 'Simulation', href: '#simulation' }
+                    ].map((item) => (
                         <a
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
+                            key={item.label}
+                            href={item.href}
                             style={{
                                 fontSize: '0.95rem',
                                 fontWeight: 500,
@@ -61,12 +65,12 @@ const Navbar = () => {
                             onMouseOver={(e) => { e.target.style.opacity = 1; e.target.style.color = 'var(--primary-color)'; }}
                             onMouseOut={(e) => { e.target.style.opacity = 0.7; e.target.style.color = 'inherit'; }}
                         >
-                            {item}
+                            {item.label}
                         </a>
                     ))}
                     <a href="https://cal.com/naveria.space" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <button className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem' }}>
-                            Request Demo
+                            Schedule Demo
                         </button>
                     </a>
                 </div>

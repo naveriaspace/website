@@ -299,4 +299,9 @@ p {
     gap: 0.5rem !important;
     text-align: center !important;
   }
+
+  /* Platform 2x2 grids to 1 column on mobile */
+  div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
+    grid-template-columns: 1fr !important;
+  }
 }
