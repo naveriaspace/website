@@ -88,8 +88,8 @@ const Satellite = () => {
     const { scene } = useGLTF('/aqua.glb')
 
     useFrame((state) => {
-        // Add larger phase offset so satellite starts immediately visible on the right side
-        const t = state.clock.getElapsedTime() * 0.2 + Math.PI * 1.5
+        // Start at top of orbit (90 degrees) for maximum visibility
+        const t = state.clock.getElapsedTime() * 0.2 + Math.PI / 2
         const radius = 2.8
 
         // Calculate position on the inclined plane matching OrbitPath
