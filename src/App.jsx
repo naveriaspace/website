@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Platform from './components/Platform';
 import Services from './components/Services';
 import ProblemSolution from './components/ProblemSolution';
+import Team from './components/Team';
 import Navbar from './components/Navbar';
 import { motion } from 'framer-motion';
 
@@ -16,6 +17,7 @@ function App() {
         <Platform />
         <Services />
         <ProblemSolution />
+        <Team />
 
         <section className="section" id="contact" style={{ minHeight: '50vh', display: 'flex', alignItems: 'center' }}>
           <div className="container">

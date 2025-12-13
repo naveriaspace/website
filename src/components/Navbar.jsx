@@ -51,7 +51,8 @@ const Navbar = () => {
                     {[
                         { label: 'Platform', href: '#platform' },
                         { label: 'Segments', href: '#segments' },
-                        { label: 'Simulation', href: '#simulation' }
+                        { label: 'Simulation', href: '#simulation' },
+                        { label: 'Team', href: '#team' }
                     ].map((item) => (
                         <a
                             key={item.label}
