@@ -5,7 +5,7 @@ const ProblemSolution = () => {
     return (
         <section className="section" id="simulation">
             <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem' }}>
 
                     {/* SITL Section */}
                     <motion.div
@@ -23,10 +23,10 @@ const ProblemSolution = () => {
                                 <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.2)' }}></div>
                             </div>
                         </div>
-                        <h2 className="text-gradient" style={{ marginBottom: '1.5rem', fontSize: '2rem' }}>
+                        <h2 className="text-gradient" style={{ marginBottom: '1.5rem' }}>
                             Validate Before Launch
                         </h2>
-                        <p style={{ fontSize: '1.05rem', color: '#a0a0b0', marginBottom: '2rem', lineHeight: '1.6', flexGrow: 1 }}>
+                        <p style={{ color: '#a0a0b0', marginBottom: '2rem', lineHeight: '1.6', flexGrow: 1 }}>
                             Our Software-In-The-Loop simulation is production-ready and shipped. Test your exact flight code in a physics-accurate virtual environment. Inject failures, simulate sensor noise, and validate GNC algorithms, all before touching hardware.
                         </p>
 
@@ -37,7 +37,7 @@ const ProblemSolution = () => {
                                 "Faster-than-realtime simulation",
                                 "Integration with analysis tools"
                             ].map((item, i) => (
-                                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.95rem' }}>
+                                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                     <CheckCircle size={16} color="#ffffff" />
                                     <span>{item}</span>
                                 </li>
@@ -62,10 +62,10 @@ const ProblemSolution = () => {
                             <Cpu size={24} />
                             <span style={{ fontWeight: 600, letterSpacing: '1px', fontSize: '0.9rem' }}>HITL SUPPORT • READY</span>
                         </div>
-                        <h2 className="text-gradient" style={{ marginBottom: '1.5rem', fontSize: '2rem' }}>
+                        <h2 className="text-gradient" style={{ marginBottom: '1.5rem' }}>
                             Hardware-In-The-Loop
                         </h2>
-                        <p style={{ fontSize: '1.05rem', color: '#a0a0b0', marginBottom: '2rem', lineHeight: '1.6', flexGrow: 1 }}>
+                        <p style={{ color: '#a0a0b0', marginBottom: '2rem', lineHeight: '1.6', flexGrow: 1 }}>
                             Full Hardware-In-The-Loop support is built-in. Bridge simulation and reality by connecting your flight computer directly to our physics engine. Validate timing constraints, I/O behavior, and processor loads before flight.
                         </p>
 

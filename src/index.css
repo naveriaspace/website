@@ -213,35 +213,64 @@ p {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+
+  body,
+  html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  * {
+    box-sizing: border-box !important;
+  }
+
   .container {
-    padding: 0 1rem;
+    padding: 0 1rem !important;
+    max-width: 100vw !important;
   }
 
   .section {
-    padding: 60px 0;
+    padding: 80px 0;
     min-height: auto;
   }
 
   h1 {
-    font-size: clamp(2rem, 8vw, 3rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.5rem !important;
   }
 
   h2 {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+  }
+
+  h4 {
+    font-size: 1.1rem !important;
   }
 
   p {
-    font-size: 1rem !important;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.25rem !important;
   }
 
   .glass-panel {
-    padding: 1.5rem !important;
+    padding: 1.75rem !important;
+    margin-bottom: 1.5rem;
   }
 
   .btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
+    padding: 16px 24px !important;
+    font-size: 1.05rem !important;
+    height: auto !important;
   }
 
   /* Navbar mobile */
@@ -257,14 +286,18 @@ p {
   .section[style*="justifyContent: 'center'"] {
     align-items: center !important;
     text-align: center !important;
+    padding-top: 120px !important;
+    min-height: 100vh !important;
   }
 
   .section[style*="justifyContent: 'center'"]>div {
     align-items: center !important;
+    padding-top: 2rem !important;
   }
 
   .section[style*="justifyContent: 'center'"] h1 {
     text-align: center !important;
+    margin-top: 1rem !important;
   }
 
   .section[style*="justifyContent: 'center'"] h2 {
@@ -275,33 +308,203 @@ p {
     max-width: 100% !important;
   }
 
+  .section[style*="justifyContent: 'center'"] p {
+    font-size: 1.15rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Button groups - stack vertically on mobile */
+  div[style*="display: 'flex'"][style*="gap"] {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100%;
+  }
+
   /* Features grid mobile */
   .features-grid {
     grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Platform section mobile */
+  #platform h2 {
+    font-size: 2rem !important;
+  }
+
+  #platform p {
+    font-size: 1.1rem !important;
+  }
+
+  /* Platform layer cards - FORCE SINGLE COLUMN */
+  #platform .glass-panel h3 {
+    font-size: 1.3rem !important;
+  }
+
+  #platform .glass-panel li {
+    font-size: 1rem !important;
+  }
+
+  /* Fix Platform grid container margins - aggressive fix */
+  #platform .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  /* FORCE Platform cards to stack vertically on mobile */
+  #platform>div>div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure all containers don't overflow */
+  .container {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Fix any grid that might cause horizontal scroll */
+  div[style*="grid"] {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Stats section mobile */
+  div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Stat values */
+  .text-gradient[style*="fontSize: 'clamp"] {
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
   }
 
   /* Contact section mobile */
   #contact .glass-panel {
-    padding: 2rem 1rem !important;
+    padding: 2.5rem 1.5rem !important;
   }
 
   #contact h2 {
-    font-size: 1.8rem !important;
+    font-size: 2rem !important;
   }
 
   #contact p {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
 
   /* Footer mobile */
   footer .container {
     flex-direction: column !important;
-    gap: 0.5rem !important;
+    gap: 1rem !important;
     text-align: center !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* IIT Badge mobile - in Team section */
+  #team svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  #team div[style*="padding: '0.75rem 1.25rem'"] {
+    padding: 0.6rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  #team div[style*="fontSize: '0.95rem'"] {
+    font-size: 0.85rem !important;
   }
 
   /* Platform 2x2 grids to 1 column on mobile */
-  div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
+  div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"],
+  div[style*='gridTemplateColumns: "repeat(2, 1fr)"'] {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Ecosystem benefits grid */
+  div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr)'"],
+  div[style*='gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr)"'] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* List items in cards */
+  ul li {
+    font-size: 1rem !important;
+  }
+
+  /* Tier labels */
+  div[style*="fontSize: '0.7rem'"] {
+    font-size: 0.75rem !important;
+  }
+
+  /* Team section mobile */
+  #team h3 {
+    font-size: 1.5rem !important;
+  }
+
+  #team p {
+    font-size: 1rem !important;
+  }
+
+  #team div[style*="fontSize: '0.9rem'"] {
+    font-size: 0.95rem !important;
+  }
+
+  #team div[style*="fontSize: '0.95rem'"] {
+    font-size: 1rem !important;
+  }
+
+  /* Services section mobile */
+  #segments h3 {
+    font-size: 1.25rem !important;
+  }
+
+  #segments p {
+    font-size: 1rem !important;
+  }
+
+  /* SITL/HITL section mobile */
+  #simulation h2 {
+    font-size: 1.75rem !important;
+  }
+
+  #simulation p {
+    font-size: 1.05rem !important;
+  }
+
+  #simulation li {
+    font-size: 1rem !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem !important;
+  }
+
+  h2 {
+    font-size: 1.65rem !important;
+  }
+
+  .glass-panel {
+    padding: 1.5rem !important;
+  }
+
+  .section {
+    padding: 60px 0;
   }
 }

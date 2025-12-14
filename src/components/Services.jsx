@@ -54,7 +54,7 @@ const Services = () => {
                 >
                     Who We Serve
                 </motion.h2>
-                <p style={{ textAlign: 'center', marginBottom: '4rem', color: '#a0a0b0', fontSize: '1.1rem' }}>
+                <p style={{ textAlign: 'center', marginBottom: '4rem', color: '#a0a0b0' }}>
                     From students to space agencies. Building the ecosystem together.
                 </p>
 
@@ -74,8 +74,8 @@ const Services = () => {
                                 {segment.highlight}
                             </div>
                             <div style={{ marginBottom: '1rem' }}>{segment.icon}</div>
-                            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{segment.title}</h3>
-                            <p style={{ fontSize: '0.9rem', flexGrow: 1, lineHeight: '1.6', color: '#b0b0c0' }}>{segment.description}</p>
+                            <h3 style={{ marginBottom: '0.75rem' }}>{segment.title}</h3>
+                            <p style={{ flexGrow: 1, lineHeight: '1.6', color: '#b0b0c0' }}>{segment.description}</p>
                         </motion.div>
                     ))}
                 </div>

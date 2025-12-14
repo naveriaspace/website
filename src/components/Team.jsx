@@ -30,15 +30,15 @@ const Team = () => {
                     <h2 className="text-gradient" style={{ marginBottom: '1rem' }}>
                         The Team
                     </h2>
-                    <p style={{ fontSize: '1.2rem', color: '#a0a0b0', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
+                    <p style={{ color: '#a0a0b0', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
                         Built by aerospace engineers from IIT Kharagpur with deep expertise in autonomous systems and satellite technology.
                     </p>
                 </motion.div>
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-                    gap: '3rem',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+                    gap: '2rem',
                     maxWidth: '1200px',
                     margin: '0 auto'
                 }}>
@@ -92,7 +92,7 @@ const Team = () => {
                             </div>
 
                             <div style={{ marginBottom: '1.5rem' }}>
-                                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 600 }}>
+                                <h3 style={{ marginBottom: '0.5rem', fontWeight: 600 }}>
                                     {founder.name}
                                 </h3>
                                 <div style={{
@@ -116,7 +116,6 @@ const Team = () => {
                             </div>
 
                             <p style={{
-                                fontSize: '0.95rem',
                                 color: '#b0b0c0',
                                 lineHeight: '1.7',
                                 textAlign: 'left',

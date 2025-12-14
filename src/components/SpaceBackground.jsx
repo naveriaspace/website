@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense, useMemo } from 'react'
+import { useState, useRef, Suspense, useMemo, useEffect } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { Points, PointMaterial, Preload, Float, useTexture, useGLTF } from '@react-three/drei'
 import * as random from 'maath/random/dist/maath-random.esm'
@@ -193,15 +193,36 @@ const Satellite = () => {
 }
 
 const SpaceBackground = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        // Check if mobile on mount
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+
+        // Add resize listener
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Adjust camera and scene for mobile
+    const cameraPosition = isMobile ? [0, 0, 10] : [0, 0, 6];
+    const cameraFov = isMobile ? 50 : 40;
+    const scenePosition = isMobile ? [0, 0, 0] : [0.5, 0, 0];
+
     return (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 0 }}>
-            <Canvas camera={{ position: [0, 0, 6], fov: 40 }}>
+            <Canvas camera={{ position: cameraPosition, fov: cameraFov }}>
                 <color attach="background" args={['#000000']} />
                 <ambientLight intensity={0.3} />
                 <directionalLight position={[-5, 2, 5]} intensity={3} />
                 {/* <directionalLight position={[5, -2, -5]} intensity={1} color="#445566" /> Fill light */}
                 <Suspense fallback={null}>
-                    <group position={[0.5, 0, 0]}>
+                    <group position={scenePosition}>
                         <StarField />
                         <OrbitPath />
                         <Earth />

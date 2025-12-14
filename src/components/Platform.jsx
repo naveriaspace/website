@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Layers, Unlock, Lock, Users, GitBranch, Award } from 'lucide-react';
+import { Layers, Unlock, Lock, GitBranch, Award } from 'lucide-react';
 
 const Platform = () => {
     const layers = [
@@ -22,7 +22,8 @@ const Platform = () => {
                 "Real-time operating system core",
                 "6-DOF attitude control (reference)",
                 "Sensor abstraction layer",
-                "SITL physics simulator"
+                "SITL physics simulator",
+                "HITL support (Hardware-In-The-Loop)"
             ]
         },
         {
@@ -61,7 +62,7 @@ const Platform = () => {
                     <h2 className="text-gradient" style={{ marginBottom: '1rem' }}>
                         The Naveria Standard
                     </h2>
-                    <p style={{ fontSize: '1.2rem', color: '#a0a0b0', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
+                    <p style={{ color: '#a0a0b0', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
                         A complete specification that any manufacturer or institution can build to. Creating an interoperable ecosystem where everyone benefits.
                     </p>
                 </motion.div>
@@ -71,9 +72,9 @@ const Platform = () => {
                     display: 'grid',
                     gridTemplateColumns: 'repeat(2, 1fr)',
                     gap: '2rem',
-                    marginBottom: '5rem',
                     maxWidth: '1000px',
-                    margin: '0 auto 5rem'
+                    width: '100%',
+                    margin: '0 auto 5rem auto'
                 }}>
                     {layers.map((layer, index) => (
                         <motion.div
@@ -110,10 +111,10 @@ const Platform = () => {
                                     }}>
                                         {layer.tier}
                                     </div>
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginTop: '0' }}>{layer.title}</h3>
+                                    <h3 style={{ fontWeight: 600, marginTop: '0' }}>{layer.title}</h3>
                                 </div>
                             </div>
-                            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.875rem', fontSize: '0.95rem', color: '#b0b0c0', paddingLeft: 0 }}>
+                            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.875rem', color: '#b0b0c0', paddingLeft: 0 }}>
                                 {layer.items.map((item, i) => (
                                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                                         <span style={{
@@ -127,90 +128,6 @@ const Platform = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Ecosystem Benefits */}
-                <motion.div
-                    className="glass-panel"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)' }}
-                >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                        <Users size={32} color="#ffffff" />
-                        <div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>Open Ecosystem, Proprietary Value</h3>
-                            <p style={{ color: '#a0a0b0', fontSize: '0.95rem' }}>The best of both worlds</p>
-                        </div>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-                        <div>
-                            <h4 style={{ color: '#ffffff', marginBottom: '0.75rem', fontSize: '1rem' }}>For the Community</h4>
-                            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem', color: '#b0b0c0' }}>
-                                <li>✓ Zero cost to build satellites</li>
-                                <li>✓ Full interoperability</li>
-                                <li>✓ Access to cutting-edge RTOS</li>
-                                <li>✓ Educational use without restrictions</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style={{ color: '#ffffff', marginBottom: '0.75rem', fontSize: '1rem' }}>For Commercial Operators</h4>
-                            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem', color: '#b0b0c0' }}>
-                                <li>✓ Advanced ADCS algorithms</li>
-                                <li>✓ Constellation management</li>
-                                <li>✓ Cloud mission operations</li>
-                                <li>✓ Professional services & support</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style={{ color: '#ffffff', marginBottom: '0.75rem', fontSize: '1rem' }}>For Manufacturers</h4>
-                            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem', color: '#b0b0c0' }}>
-                                <li>✓ Build compatible hardware</li>
-                                <li>✓ Certification program</li>
-                                <li>✓ Technical support</li>
-                                <li>✓ Revenue sharing opportunities</li>
-                            </ul>
-                        </div>
-                    </div>
-                </motion.div>
-
-                {/* Stats */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    gap: '3rem',
-                    marginTop: '5rem',
-                    maxWidth: '800px',
-                    margin: '5rem auto 0'
-                }}>
-                    {[
-                        { value: "$22B", label: "Small satellite market by 2035" },
-                        { value: "500+", label: "Target institutions globally" },
-                        { value: "12.7%", label: "Market CAGR" },
-                        { value: "Open", label: "Standard, proprietary value" }
-                    ].map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            style={{
-                                textAlign: 'center',
-                                padding: '2rem',
-                                borderRadius: '16px',
-                                background: 'rgba(255,255,255,0.02)',
-                                border: '1px solid rgba(255,255,255,0.05)'
-                            }}
-                        >
-                            <div className="text-gradient" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 700, marginBottom: '0.75rem', lineHeight: '1' }}>
-                                {stat.value}
-                            </div>
-                            <div style={{ color: '#a0a0b0', fontSize: '0.95rem', lineHeight: '1.4' }}>{stat.label}</div>
                         </motion.div>
                     ))}
                 </div>
