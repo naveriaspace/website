@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Layers, Unlock, Lock, GitBranch, Award } from 'lucide-react';
+import { Layers, Unlock, Code, ShieldCheck } from 'lucide-react';
 
 const Platform = () => {
     const layers = [
         {
             title: "Open Hardware Standard",
-            tier: "OPEN",
+            tier: "PHYSICAL LAYER",
             icon: <Unlock size={24} />,
             items: [
                 "CubeSat form factors (1U, 3U, 6U)",
@@ -15,43 +15,31 @@ const Platform = () => {
             ]
         },
         {
-            title: "Open Software Stack",
-            tier: "OPEN",
-            icon: <GitBranch size={24} />,
+            title: "Open Interface Standard",
+            tier: "PROTOCOL LAYER",
+            icon: <Code size={24} />,
             items: [
-                "Real-time operating system core",
-                "6-DOF attitude control (reference)",
-                "Sensor abstraction layer",
-                "SITL physics simulator",
-                "HITL support (Hardware-In-The-Loop)"
+                "Unified API definitions",
+                "Universal driver model",
+                "Interoperable payload SDK",
+                "Community-driven roadmap"
             ]
         },
         {
-            title: "Proprietary Software",
-            tier: "COMMERCIAL",
-            icon: <Lock size={24} />,
+            title: "Certification Program",
+            tier: "COMPLIANCE",
+            icon: <ShieldCheck size={24} />,
             items: [
-                "Advanced ADCS algorithms",
-                "Constellation manager",
-                "Formation flying suite",
-                "ML-based optimization"
-            ]
-        },
-        {
-            title: "Cloud Platform",
-            tier: "SAAS",
-            icon: <Layers size={24} />,
-            items: [
-                "Command Center (mission ops)",
-                "Real-time telemetry",
-                "Automated anomaly detection",
-                "Analytics & trend prediction"
+                "Hardware validation tests",
+                "Software compatibility checks",
+                "Integration assurance",
+                "Plug-and-play verification"
             ]
         }
     ];
 
     return (
-        <section className="section" id="platform" style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0) 0%, rgba(20,15,30,0.3) 100%)' }}>
+        <section className="section" id="standard" style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0) 0%, rgba(20,15,30,0.3) 100%)' }}>
             <div className="container">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -63,16 +51,17 @@ const Platform = () => {
                         The Naveria Standard
                     </h2>
                     <p style={{ color: '#a0a0b0', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
-                        A complete specification that any manufacturer or institution can build to. Creating an interoperable ecosystem where everyone benefits.
+                        Beyond our products, we maintan the open standard that drives the industry forward.
+                        Ensuring interoperability between hardware and software from any vendor.
                     </p>
                 </motion.div>
 
-                {/* Architecture Layers - 2x2 Grid */}
+                {/* Architecture Layers - 3 Column Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                     gap: '2rem',
-                    maxWidth: '1000px',
+                    maxWidth: '1200px',
                     width: '100%',
                     margin: '0 auto 5rem auto'
                 }}>

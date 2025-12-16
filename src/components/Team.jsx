@@ -5,16 +5,16 @@ const Team = () => {
         {
             name: "Aman Kumar",
             role: "CEO & Founder",
-            education: "Aerospace Engineering, IIT Kharagpur - 2025",
+            education: "Aerospace Engineering, IIT Kharagpur",
             photo: "/aman.avif",
-            bio: "Aman has led multiple teams in high-impact projects, including autonomous tractors, aerial vehicles, helicopters, manipulators, drone swarming, fixed wings, and satellites. As the head of Aerial Robotics Kharagpur (ARK), he mentored teams for international UAV competitions (IMAV 2023, ICUAS 2024). He secured prestigious fellowships including IndiaAI Mission Fellowship and CHANAKYA Fellowship to fund research initiatives. Aman has published and presented methods in applied mathematics at international conferences."
+            bio: "Expert in autonomous systems and applied mathematics. Led high-impact projects in aerial robotics and swarms. Secured IndiaAI and CHANAKYA fellowships. Former Head of Aerial Robotics Kharagpur (ARK)."
         },
         {
             name: "Ved Takte",
             role: "CTO & Founder",
-            education: "Aerospace Engineering, IIT Kharagpur - 2028",
+            education: "Aerospace Engineering, IIT Kharagpur",
             photo: "/ved.avif",
-            bio: "Ved brings over 12 years of hands-on experience in developing and operating advanced UAV systems, including fixed-wing aircraft, multirotors, and VTOLs. He is recognized as a record holder in Asia Book of Records and India Book of Records. Certified as a professional drone pilot by DGCA (Directorate General of Civil Aviation), Ved has achieved top honors in multiple robotics championships, including WRC Delhi. He won undergraduate competitions while still being a school student, and has won the Boeing competition with an internship in Thailand."
+            bio: "12+ years of experience in advanced UAV systems. Asia & India Book of Records holder. Certified DGCA drone pilot. Winner of multiple international robotics competitions including Boeing and WRC."
         }
     ];
 

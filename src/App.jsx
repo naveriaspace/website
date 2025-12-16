@@ -1,8 +1,10 @@
 import SpaceBackground from './components/SpaceBackground';
 import Hero from './components/Hero';
 import Platform from './components/Platform';
+import Products from './components/Products';
 import Services from './components/Services';
 import Team from './components/Team';
+import Timeline from './components/Timeline';
 import Navbar from './components/Navbar';
 import { motion } from 'framer-motion';
 
@@ -13,9 +15,12 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Products />
+        <Timeline />
         <Platform />
         <Services />
         <Team />
+
 
         <section className="section" id="contact" style={{ minHeight: '50vh', display: 'flex', alignItems: 'center' }}>
           <div className="container">
