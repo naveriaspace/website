@@ -605,7 +605,7 @@ h1 {
   }
 }
 
-@media (max-height: 820px) and (min-width: 981px) {
+@media (max-height: 700px) and (min-width: 981px) {
   html,
   body,
   #root {
