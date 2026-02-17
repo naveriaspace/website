@@ -130,7 +130,7 @@ a {
 }
 
 .window-content {
-  flex: 1;
+  flex: 0 0 auto;
   min-height: 0;
   display: grid;
   grid-template-columns: 1.22fr 0.78fr;
