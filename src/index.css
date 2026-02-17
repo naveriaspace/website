@@ -107,6 +107,11 @@ a {
   gap: 8px;
 }
 
+.top-right .btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -597,6 +602,133 @@ h1 {
 
   .actions {
     margin-top: 12px;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 981px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .viewport {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .window {
+    height: auto;
+    min-height: calc(100svh - 20px);
+    overflow: visible;
+    padding: 14px 18px;
+  }
+
+  .window-content {
+    --upper-offset: 8px;
+    gap: 14px;
+    padding-top: 10px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vh, 3rem);
+    line-height: 0.96;
+  }
+
+  .copy {
+    margin-top: 8px;
+    font-size: 0.92rem;
+  }
+
+  .actions {
+    margin-top: 14px;
+    gap: 10px;
+  }
+
+  .btn {
+    height: 40px;
+  }
+
+  .right {
+    padding: 12px;
+  }
+
+  .backing-card {
+    grid-template-columns: 68px 1fr;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .eme-shell {
+    width: 58px;
+    height: 90px;
+  }
+
+  .backing-copy p {
+    font-size: 1.05rem;
+  }
+
+  .iit-shell {
+    width: 40px;
+    height: 32px;
+  }
+
+  .founders-bottom {
+    padding-top: 4px;
+  }
+
+  .founders-bottom-grid {
+    gap: 8px;
+  }
+
+  .founder-card {
+    grid-template-columns: 92px 1fr;
+    padding: 9px;
+    gap: 10px;
+  }
+
+  .founder-card h2 {
+    font-size: 0.96rem;
+    margin-bottom: 2px;
+  }
+
+  .founder-role {
+    font-size: 0.76rem;
+  }
+
+  .founder-details {
+    font-size: 0.74rem;
+    margin-top: 2px;
+  }
+
+  .founder-badges {
+    margin-top: 5px;
+  }
+
+  .founder-expertise {
+    font-size: 0.66rem;
+    padding: 2px 6px;
+  }
+
+  .founder-socials {
+    margin-top: 5px;
+    gap: 6px;
+  }
+
+  .founder-mail,
+  .founder-link {
+    height: 22px;
+    font-size: 0.68rem;
+    padding: 0 6px;
+  }
+
+  .site-footer {
+    margin-top: 8px;
+    padding-top: 10px;
+    font-size: 0.72rem;
   }
 }
 
