@@ -1,6 +1,6 @@
 import { Linkedin } from 'lucide-react';
 import iitLogo from './assets/iit-kharagpur-seeklogo.png';
-import emeLogo from './assets/Indian_EME_Insignia_transparent_trimmed.png';
+// import emeLogo from './assets/Indian_EME_Insignia_transparent_trimmed.png';
 
 const founders = [
   {
@@ -60,6 +60,7 @@ function App() {
             </div>
           </div>
 
+          {/* 
           <aside className="right">
             <div className="panel-head">
               <p className="panel-title">BACKED BY</p>
@@ -76,6 +77,7 @@ function App() {
               </div>
             </div>
           </aside>
+          */}
         </div>
         <section className="founders-bottom" aria-label="Founders">
           <div className="panel-head founders-head">
