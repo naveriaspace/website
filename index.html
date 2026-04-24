@@ -196,17 +196,20 @@
     animation: heroSlideLeft 1.05s cubic-bezier(0.2, 1, 0.3, 1) 0.86s forwards;
   }
   .hero-subline {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: rgba(237,233,227,0.92);
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: rgba(237,233,227,0.65);
     max-width: 640px;
-    margin-top: 10px;
+    margin-top: 14px;
     border-left: 1px solid var(--gold);
     padding-left: 20px;
     opacity: 0;
     transform: translateY(16px);
     text-transform: none;
+    font-style: normal;
     animation: heroIn 0.75s cubic-bezier(0.22,1,0.36,1) 1.95s forwards;
   }
   @keyframes heroPopUp {
@@ -1094,7 +1097,7 @@
   // Parallax hero + dynamic nose alignment to the "IS" line
   const heroBg = document.getElementById('heroBg');
   const heroIsLine = document.querySelector('.hero-line-is');
-  const NOSE_POINT = { x: 0.80, y: 0.60 }; // normalized nose point in uav.png
+  const NOSE_POINT = { x: 0.40, y: 0.60 }; // normalized nose point in uav.png
   const OBJECT_POS = { x: 0.5, y: 0.88 };  // matches CSS object-position: center 88%
   const HERO_SCALE = 1.06;
   const PARALLAX_FACTOR = 0.18;
