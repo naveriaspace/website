@@ -49,14 +49,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 28px 56px;
-    background: transparent;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
     transition: background 0.5s, padding 0.4s;
   }
   nav.scrolled {
-    background: rgba(6,6,6,0.92);
-    backdrop-filter: blur(16px);
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
     padding: 18px 56px;
-    border-bottom: 1px solid var(--line);
   }
   .nav-logo {
     display: flex;
@@ -161,10 +165,8 @@
     z-index: 2;
     padding: 0 56px 4vh;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     align-items: end;
-    gap: 40px;
   }
   .hero-headline {
     font-family: 'Barlow Condensed', sans-serif;
@@ -174,34 +176,85 @@
     letter-spacing: -0.01em;
     text-transform: uppercase;
     color: var(--white);
-    opacity: 0;
-    transform: translateY(40px);
-    animation: heroIn 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+    perspective: 1000px;
   }
-  .hero-headline em {
+  .hero-line {
+    display: block;
+    opacity: 0;
+    will-change: transform, opacity, filter;
+  }
+  .hero-line-speed {
+    animation: heroPopUp 0.9s cubic-bezier(0.2, 0.95, 0.2, 1) 0.12s forwards;
+  }
+  .hero-line-is {
+    animation: heroSlideLeft 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
+  }
+  .hero-line-deterrence {
     font-style: italic;
     font-weight: 300;
     color: var(--gold-lt);
+    animation: heroSlideLeft 1.05s cubic-bezier(0.2, 1, 0.3, 1) 0.86s forwards;
   }
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding-bottom: 8px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: heroIn 1.0s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
-  }
-  .hero-tagline {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: rgba(237,233,227,0.6);
-    max-width: 360px;
+  .hero-subline {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(237,233,227,0.92);
+    max-width: 640px;
+    margin-top: 10px;
     border-left: 1px solid var(--gold);
     padding-left: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    text-transform: none;
+    animation: heroIn 0.75s cubic-bezier(0.22,1,0.36,1) 1.95s forwards;
   }
-  @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes heroPopUp {
+    0% {
+      opacity: 0;
+      transform: translateY(58px) scale(0.86);
+      filter: blur(6px);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(-4px) scale(1.03);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+  @keyframes heroSlideLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-140px) skewX(8deg);
+      filter: blur(8px);
+    }
+    68% {
+      opacity: 1;
+      transform: translateX(6px) skewX(0deg);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) skewX(0deg);
+      filter: blur(0);
+    }
+  }
+  @keyframes heroIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
 
   .hero-scroll {
     position: absolute;
@@ -617,7 +670,7 @@
   @media (max-width: 900px) {
     nav, nav.scrolled { padding: 18px 24px; }
     .section-wrap { padding: 72px 24px; }
-    .hero-content { grid-template-columns: 1fr; padding: 0 24px 60px; gap: 20px; }
+    .hero-content { padding: 0 24px 60px; }
     .platform-header { grid-template-columns: 1fr; }
     .capabilities { grid-template-columns: 1fr; }
     .cap-item { border-right: none; border-bottom: 1px solid var(--line); }
@@ -661,12 +714,10 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-headline">
-      Speed<br>Is<br><em>Deterrence.</em>
-    </div>
-    <div class="hero-right">
-      <p class="hero-tagline">
-        Building high-speed UAV platforms for defence - aerial targets, loitering munitions, and a supersonic strike system.
-      </p>
+      <span class="hero-line hero-line-speed">Speed</span>
+      <span class="hero-line hero-line-is">Is</span>
+      <span class="hero-line hero-line-deterrence">Deterrence.</span>
+      <p class="hero-subline">Designing high-speed UAV systems for aerial targets, loitering munitions, and supersonic strike missions.</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -934,7 +985,7 @@
         group.rotation.x = 0.06;   // slight nose-up
         group.rotation.z = 0.14;   // base bank
 
-        // Inner roll group: aileron roll around longitudinal axis (local Z after Y=PI → world +X)
+        // Inner roll group: aileron roll around longitudinal axis (local Z after Y=PI -> world +X)
         const rollGroup = new THREE.Group();
         group.add(rollGroup);
 
@@ -949,21 +1000,21 @@
 
         glowMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
 
-        // Exhaust streak (trails along +Z local = world -Z behind, visually fine)
+        // Exhaust streak extends behind travel in local +X (maps to world -X after Y=PI)
         const trailPts = [];
-        for (let i = 0; i < 40; i++) trailPts.push(0, 0, -size.z * scale * 0.45 - i * 0.3);
+        for (let i = 0; i < 40; i++) trailPts.push(size.x * scale * 0.35 + i * 0.3, 0, 0);
         const trailGeo = new THREE.BufferGeometry();
         trailGeo.setAttribute('position', new THREE.Float32BufferAttribute(trailPts, 3));
         const trailMat = new THREE.LineBasicMaterial({ color: 0xC4873B, transparent: true, opacity: 0.22 });
         rollGroup.add(new THREE.Line(trailGeo, trailMat));
 
-        // Speed lines - behind the drone in local +Z direction (after Y=PI, +Z = world -Z = behind travel)
+        // Speed lines - behind the drone in local +X (maps to world -X behind travel)
         const speedLinesGroup = new THREE.Group();
         for (let i = 0; i < 14; i++) {
           const len = 1.5 + Math.random() * 3.5;
           const linePts = new Float32Array(6);
-          linePts[0] = 0; linePts[1] = 0; linePts[2] = size.z * scale * 0.4;
-          linePts[3] = 0; linePts[4] = 0; linePts[5] = size.z * scale * 0.4 + len;
+          linePts[0] = size.x * scale * 0.3; linePts[1] = 0; linePts[2] = 0;
+          linePts[3] = size.x * scale * 0.3 + len; linePts[4] = 0; linePts[5] = 0;
           const sg = new THREE.BufferGeometry();
           sg.setAttribute('position', new THREE.Float32BufferAttribute(linePts, 3));
           const sm = new THREE.LineBasicMaterial({ color: 0xC4873B, transparent: true, opacity: 0.15 });
@@ -1038,19 +1089,67 @@
     animate(0);
   })();
 
-  // Nav scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
+  // Nav scroll state disabled to keep nav fully transparent
 
-  // Parallax hero
+  // Parallax hero + dynamic nose alignment to the "IS" line
   const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-      heroBg.style.transform = `translateY(${window.scrollY * 0.18}px) scale(1.06)`;
+  const heroIsLine = document.querySelector('.hero-line-is');
+  const NOSE_POINT = { x: 0.80, y: 0.60 }; // normalized nose point in uav.png
+  const OBJECT_POS = { x: 0.5, y: 0.88 };  // matches CSS object-position: center 88%
+  const HERO_SCALE = 1.06;
+  const PARALLAX_FACTOR = 0.18;
+  const MIN_BASE_OFFSET_Y = -320;
+  const MAX_BASE_OFFSET_Y = 0;
+  let heroBaseOffsetY = 0;
+
+  function getParallaxOffset() {
+    return Math.min(window.scrollY, window.innerHeight) * PARALLAX_FACTOR;
+  }
+
+  function computeHeroNoseOffsetY() {
+    if (!heroBg || !heroIsLine || !heroBg.naturalWidth || !heroBg.naturalHeight || !heroBg.parentElement) return 0;
+    const heroRect = heroBg.parentElement.getBoundingClientRect();
+    const isRect = heroIsLine.getBoundingClientRect();
+
+    const scale = Math.max(
+      heroRect.width / heroBg.naturalWidth,
+      heroRect.height / heroBg.naturalHeight
+    );
+    const renderedW = heroBg.naturalWidth * scale;
+    const renderedH = heroBg.naturalHeight * scale;
+    const cropOffsetY = (heroRect.height - renderedH) * OBJECT_POS.y;
+
+    const noseYUnscaled = heroRect.top + cropOffsetY + NOSE_POINT.y * renderedH;
+    const heroCenterY = heroRect.top + heroRect.height * 0.5;
+    const noseYScaled = heroCenterY + (noseYUnscaled - heroCenterY) * HERO_SCALE;
+    const isCenterY = isRect.top + isRect.height * 0.5;
+    return isCenterY - noseYScaled - getParallaxOffset();
+  }
+
+  function updateHeroBgTransform() {
+    if (!heroBg) return;
+    const scrollOffset = getParallaxOffset();
+    heroBg.style.transform = `translateY(${heroBaseOffsetY + scrollOffset}px) scale(${HERO_SCALE})`;
+  }
+
+  function alignHeroNoseToIs() {
+    const desiredOffset = computeHeroNoseOffsetY();
+    // Never move the image downward; that creates a black strip behind transparent nav.
+    heroBaseOffsetY = Math.max(MIN_BASE_OFFSET_Y, Math.min(MAX_BASE_OFFSET_Y, desiredOffset));
+    updateHeroBgTransform();
+  }
+
+  if (heroBg) {
+    if (heroBg.complete) {
+      alignHeroNoseToIs();
+    } else {
+      heroBg.addEventListener('load', alignHeroNoseToIs, { once: true });
     }
-  }, { passive: true });
+  }
+
+  window.addEventListener('resize', alignHeroNoseToIs);
+  window.addEventListener('scroll', updateHeroBgTransform, { passive: true });
+  window.addEventListener('load', alignHeroNoseToIs);
 
   // Scroll reveals
   const io = new IntersectionObserver((entries) => {
