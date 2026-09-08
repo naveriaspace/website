@@ -41,12 +41,20 @@ function section(title, bodyHtml) {
   return `<section class="jd-section"><h2>${escapeHtml(title)}</h2>${bodyHtml}</section>`;
 }
 
-function mailtoFor(email, role) {
-  const subject = encodeURIComponent(`${role.title} (${role.code})`);
-  const body = encodeURIComponent(
-    `Hello,\n\nI would like to apply for ${role.title} (${role.code}).\n\nResume attached as PDF.\n`
-  );
-  return `mailto:${email}?subject=${subject}&body=${body}`;
+function mailtoHref(data, { subject, body } = {}) {
+  const params = [];
+  if (data.applyCc) params.push(`cc=${encodeURIComponent(data.applyCc)}`);
+  if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
+  if (body) params.push(`body=${encodeURIComponent(body)}`);
+  const query = params.length ? `?${params.join('&')}` : '';
+  return `mailto:${data.applyEmail}${query}`;
+}
+
+function mailtoFor(data, role) {
+  return mailtoHref(data, {
+    subject: role.title,
+    body: `Hello,\n\nI would like to apply for ${role.title}.\n\nResume attached as PDF.\n`,
+  });
 }
 
 function renderListing(root, data) {
@@ -63,7 +71,7 @@ function renderListing(root, data) {
           </div>
           <span class="role-card-action">View role</span>
         </a>`).join('')
-    : `<p class="empty-roles">No open roles right now. Send a note to <a href="mailto:${escapeHtml(data.applyEmail)}">${escapeHtml(data.applyEmail)}</a>.</p>`;
+    : `<p class="empty-roles">No open roles right now. Send a note to <a href="#">${escapeHtml(data.applyEmail)}</a>.</p>`;
 
   root.innerHTML = `
     <div class="section-label">${escapeHtml(intro.label || 'Careers')}</div>
@@ -71,6 +79,9 @@ function renderListing(root, data) {
     <p class="page-intro">${escapeHtml(intro.body || '')}</p>
     ${roles.length ? `<div class="role-count">${countLabel}</div>` : ''}
     <div class="role-list">${cards}</div>`;
+
+  const emptyMail = root.querySelector('.empty-roles a');
+  if (emptyMail) emptyMail.setAttribute('href', mailtoHref(data));
 }
 
 function renderRole(root, data, id) {
@@ -101,7 +112,7 @@ function renderRole(root, data, id) {
       <div class="jd-fact-value">${escapeHtml(value)}</div>
     </div>`).join('');
 
-  const applyHref = mailtoFor(data.applyEmail, role);
+  const applyHref = mailtoFor(data, role);
 
   root.innerHTML = `
     <div class="jd-toolbar">
@@ -123,14 +134,18 @@ function renderRole(root, data, id) {
         <div class="apply-kicker">Apply</div>
         <h2 class="apply-title">Apply for this role</h2>
         <p class="apply-copy">Open your mail app, attach a PDF resume, and send a short note. Nothing is stored on this site.</p>
-        <a class="apply-btn" href="${escapeHtml(applyHref)}">Open email to apply →</a>
+        <a class="apply-btn" href="#">Open email to apply →</a>
         <div class="apply-email-row">
-          <a class="apply-email" href="${escapeHtml(applyHref)}">${escapeHtml(data.applyEmail)}</a>
+          <a class="apply-email" href="#">${escapeHtml(data.applyEmail)}</a>
           <button type="button" class="apply-copy-btn" data-email="${escapeHtml(data.applyEmail)}" aria-label="Copy email address">Copy</button>
         </div>
         <p class="apply-hint">Attach the PDF in your mail app before you send.</p>
       </aside>
     </div>`;
+
+  root.querySelectorAll('.apply-btn, .apply-email').forEach(link => {
+    link.setAttribute('href', applyHref);
+  });
 
   const copyBtn = root.querySelector('.apply-copy-btn');
   copyBtn.addEventListener('click', async () => {

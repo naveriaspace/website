@@ -1,5 +1,6 @@
 {
-  "applyEmail": "aman@naveria.space",
+  "applyEmail": "ved@naveria.space",
+  "applyCc": "aman@naveria.space",
   "intro": {
     "label": "Careers",
     "titleHtml": "Open roles",
@@ -7,62 +8,64 @@
   },
   "roles": [
     {
-      "id": "flight-software-engineer",
-      "code": "NV-001",
-      "title": "Flight Software Engineer",
+      "id": "cad-engineer",
+      "title": "CAD Engineer",
       "type": "Full-time",
       "location": "India · On-site",
-      "function": "Flight software",
+      "function": "Design",
       "open": true,
-      "summary": "Own onboard software, control, and simulation for high-speed UAV systems, from the lab to first flight.",
+      "summary": "Create and maintain technical CAD drawings in SolidWorks, Fusion 360, or CATIA. Rapid design iteration as changes come in.",
       "do": [
-        "Design and ship flight software for high-speed unmanned aircraft.",
-        "Build and maintain the simulation environment used to test software before it flies.",
-        "Bring up onboard computers, sensors, and radios on the bench and on the vehicle.",
-        "Debug issues across software and hardware with a small, hands-on team.",
-        "Write clear, testable code and keep the vehicle flying as the airframe and propulsion evolve."
+        "Create and maintain technical CAD drawings of the airframe and related parts.",
+        "Work in SolidWorks, Fusion 360, or CATIA.",
+        "Iterate the design quickly as geometry, manufacturing, or test feedback changes.",
+        "Keep models and drawings current for manufacturing."
       ],
       "lookingFor": [
-        "Strong programming ability in C/C++ and/or Python, with comfort on Linux.",
-        "A grounding in control, embedded systems, or robotics, from coursework or shipped projects.",
-        "Experience debugging real systems, not only simulation.",
-        "Willingness to work on-site with hardware, not only remotely from a laptop."
-      ],
-      "preferred": [
-        "Flight-control, autopilot, or UAV software you have actually run on a vehicle.",
-        "Familiarity with sensors, radio links, or real-time software.",
-        "A degree in computer science, aerospace, electrical, or a related field, or equivalent work."
-      ],
-      "why": "Direct work with the founding team on the software that flies the aircraft. Small team, high ownership, and a short path from code to the runway."
+        "Working experience in SolidWorks, Fusion 360, or CATIA.",
+        "Experience producing and maintaining technical CAD drawings.",
+        "Comfort with rapid design iteration.",
+        "Available to work on-site in India."
+      ]
     },
     {
-      "id": "aerospace-engineer",
-      "code": "NV-002",
-      "title": "Aerospace Engineer",
+      "id": "cfd-simulation-engineer",
+      "title": "CFD Simulation Engineer",
       "type": "Full-time",
       "location": "India · On-site",
-      "function": "Airframe",
+      "function": "Simulation",
       "open": true,
-      "summary": "Design, analyse, and help build the airframe: structures, aerodynamics, and the path from CAD to composite parts.",
+      "summary": "CFD and FEA simulations in Ansys for the airframe.",
       "do": [
-        "Own airframe design and analysis for a high-speed unmanned aircraft.",
-        "Run structural and aerodynamic analysis and turn results into hardware decisions.",
-        "Work with in-house manufacturing on composite parts, fit, and assembly.",
-        "Support ground and flight test as the vehicle comes together.",
-        "Keep drawings, models, and test notes in a state others can actually use."
+        "Run CFD simulations in Ansys.",
+        "Run FEA simulations in Ansys.",
+        "Use results to support design and manufacturing decisions."
       ],
       "lookingFor": [
-        "A grounding in aircraft structures, aerodynamics, or composite design.",
-        "Comfort in CAD and in at least one analysis tool used for structures or flow.",
-        "Willingness to move between the screen and the shop floor.",
-        "Clear written communication. Short notes that a teammate can act on."
+        "Working experience with CFD and FEA in Ansys.",
+        "Available to work on-site in India."
+      ]
+    },
+    {
+      "id": "composite-manufacturing",
+      "title": "Composite Manufacturing",
+      "type": "Full-time",
+      "location": "India · On-site",
+      "function": "Manufacturing",
+      "open": true,
+      "summary": "Carbon-fibre tooling, layup, infusion, and assembly of airframe parts.",
+      "do": [
+        "Lay up and infuse carbon-fibre parts for the airframe.",
+        "Make and maintain moulds and shop tooling.",
+        "Trim, fit, and assemble composite parts.",
+        "Inspect parts and keep a repeatable manufacturing process.",
+        "Work from CAD and drawings with the design team."
       ],
-      "preferred": [
-        "Hands-on composite, prototyping, or UAV airframe work.",
-        "A degree in aerospace, mechanical, or a related field, or equivalent work.",
-        "Experience taking a part from model to a vehicle that was actually built."
-      ],
-      "why": "End-to-end airframe work on a high-speed UAV, sitting with software and manufacturing rather than throwing drawings over a wall."
+      "lookingFor": [
+        "Hands-on composite manufacturing: wet layup, vacuum infusion, or similar.",
+        "Experience with moulds, trimming, or structural assembly.",
+        "Available to work on-site in India."
+      ]
     }
   ]
 }

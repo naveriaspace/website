@@ -35,13 +35,13 @@
   <div class="footer-copy">© 2026 Naveria Space · <a href="./">Careers</a></div>
 </footer>
 
-<script src="careers.js"></script>
+<script src="careers.js?v=3"></script>
 <script>
   NaveriaCareers.loadJobs()
     .then(data => NaveriaCareers.renderListing(document.getElementById('careers-root'), data))
     .catch(() => {
       document.getElementById('careers-root').innerHTML =
-        '<div class="jd-missing"><h1>Could not load roles</h1><p>Refresh, or write to aman@naveria.space.</p></div>';
+        '<div class="jd-missing"><h1>Could not load roles</h1><p>Refresh, or write to ved@naveria.space.</p></div>';
     });
 </script>
 </body>
