@@ -5,17 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naveria Space</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="uav.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="font" href="fonts/NevanRUS.woff2" type="font/woff2" crossorigin>
 <style>
 @font-face {
   font-family: 'Nevan RUS';
-  src: url('fonts/NevanRUS.woff2') format('woff2'),
-       url('fonts/NevanRUS.woff') format('woff'),
-       url('fonts/NevanRUS.ttf') format('truetype');
-  font-weight: normal;
+  src: url('fonts/NevanRUS.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/barlow-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/barlow-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/barlow-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/barlow-300-italic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
   font-display: swap;
 }
 </style>
@@ -121,6 +146,11 @@
     align-items: center;
   }
   .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+  .hero-bg picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
   .hero-bg img {
     width: 100%;
     height: 100%;
@@ -457,8 +487,6 @@
 </head>
 <body>
 
-<!-- THREE.JS JET -->
-<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
 <canvas id="jet-canvas"></canvas>
 
 <!-- NAV -->
@@ -480,7 +508,10 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
-    <img id="heroBg" src="uav.png" alt="">
+    <picture>
+      <source type="image/webp" srcset="uav.webp">
+      <img id="heroBg" src="uav.jpg" width="1470" height="1070" alt="" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -522,7 +553,7 @@
     <div class="section-label reveal">Team</div>
     <div class="founders-row">
       <div class="founder-item reveal reveal-delay-1">
-        <img src="img/aman.avif" alt="Aman Kumar Singh" class="founder-photo">
+        <img src="img/aman.avif" alt="Aman Kumar Singh" class="founder-photo" width="112" height="112" loading="lazy" decoding="async">
         <div class="founder-info">
           <div class="founder-name">Aman Kumar Singh</div>
           <div class="founder-role">Co-founder, flight software</div>
@@ -532,7 +563,7 @@
         </div>
       </div>
       <div class="founder-item reveal reveal-delay-2">
-        <img src="img/ved.avif" alt="Ved Takte" class="founder-photo">
+        <img src="img/ved.avif" alt="Ved Takte" class="founder-photo" width="112" height="112" loading="lazy" decoding="async">
         <div class="founder-info">
           <div class="founder-name">Ved Takte</div>
           <div class="founder-role">Co-founder, airframe</div>
@@ -577,7 +608,8 @@
 </footer>
 
 <script>
-  // ── THREE.JS STL DRONE FLYBY ──
+  // ── THREE.JS STL DRONE FLYBY (after first paint) ──
+  function initJetFlyby() {
   (function() {
     const canvas = document.getElementById('jet-canvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -785,6 +817,18 @@
     }
     animate(0);
   })();
+  }
+
+  function loadJetFlyby() {
+    if (window.THREE) { initJetFlyby(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://unpkg.com/three@0.158.0/build/three.min.js';
+    s.onload = initJetFlyby;
+    document.body.appendChild(s);
+  }
+
+  if (document.readyState === 'complete') loadJetFlyby();
+  else window.addEventListener('load', loadJetFlyby);
 
   // Nav scroll state disabled to keep nav fully transparent
 
