@@ -1,0 +1,68 @@
+{
+  "applyEmail": "aman@naveria.space",
+  "intro": {
+    "label": "Careers",
+    "titleHtml": "Open roles",
+    "body": "A small team building high-speed UAV systems."
+  },
+  "roles": [
+    {
+      "id": "flight-software-engineer",
+      "code": "NV-001",
+      "title": "Flight Software Engineer",
+      "type": "Full-time",
+      "location": "India · On-site",
+      "function": "Flight software",
+      "open": true,
+      "summary": "Own onboard software, control, and simulation for high-speed UAV systems, from the lab to first flight.",
+      "do": [
+        "Design and ship flight software for high-speed unmanned aircraft.",
+        "Build and maintain the simulation environment used to test software before it flies.",
+        "Bring up onboard computers, sensors, and radios on the bench and on the vehicle.",
+        "Debug issues across software and hardware with a small, hands-on team.",
+        "Write clear, testable code and keep the vehicle flying as the airframe and propulsion evolve."
+      ],
+      "lookingFor": [
+        "Strong programming ability in C/C++ and/or Python, with comfort on Linux.",
+        "A grounding in control, embedded systems, or robotics, from coursework or shipped projects.",
+        "Experience debugging real systems, not only simulation.",
+        "Willingness to work on-site with hardware, not only remotely from a laptop."
+      ],
+      "preferred": [
+        "Flight-control, autopilot, or UAV software you have actually run on a vehicle.",
+        "Familiarity with sensors, radio links, or real-time software.",
+        "A degree in computer science, aerospace, electrical, or a related field, or equivalent work."
+      ],
+      "why": "Direct work with the founding team on the software that flies the aircraft. Small team, high ownership, and a short path from code to the runway."
+    },
+    {
+      "id": "aerospace-engineer",
+      "code": "NV-002",
+      "title": "Aerospace Engineer",
+      "type": "Full-time",
+      "location": "India · On-site",
+      "function": "Airframe",
+      "open": true,
+      "summary": "Design, analyse, and help build the airframe: structures, aerodynamics, and the path from CAD to composite parts.",
+      "do": [
+        "Own airframe design and analysis for a high-speed unmanned aircraft.",
+        "Run structural and aerodynamic analysis and turn results into hardware decisions.",
+        "Work with in-house manufacturing on composite parts, fit, and assembly.",
+        "Support ground and flight test as the vehicle comes together.",
+        "Keep drawings, models, and test notes in a state others can actually use."
+      ],
+      "lookingFor": [
+        "A grounding in aircraft structures, aerodynamics, or composite design.",
+        "Comfort in CAD and in at least one analysis tool used for structures or flow.",
+        "Willingness to move between the screen and the shop floor.",
+        "Clear written communication. Short notes that a teammate can act on."
+      ],
+      "preferred": [
+        "Hands-on composite, prototyping, or UAV airframe work.",
+        "A degree in aerospace, mechanical, or a related field, or equivalent work.",
+        "Experience taking a part from model to a vehicle that was actually built."
+      ],
+      "why": "End-to-end airframe work on a high-speed UAV, sitting with software and manufacturing rather than throwing drawings over a wall."
+    }
+  ]
+}

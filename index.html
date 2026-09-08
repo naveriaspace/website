@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'Nevan RUS';
@@ -23,12 +23,13 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:      #060606;
-    --gold:    #C4873B;
-    --gold-lt: #E8B86D;
-    --white:   #EDE9E3;
-    --muted:   #4A4744;
-    --line:    rgba(237,233,227,0.10);
+    --bg:      #191c19;
+    --gold:    #C88F4D;
+    --gold-lt: #FFBD59;
+    --white:   #F4F1EA;
+    --muted:   #9A9D98;
+    --line:    rgba(244,241,234,0.10);
+    --panel:   #151815;
   }
 
   html { scroll-behavior: smooth; }
@@ -40,7 +41,6 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -48,85 +48,69 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 56px;
-    background: transparent !important;
-    box-shadow: none !important;
-    border-bottom: none !important;
-    backdrop-filter: none !important;
-    transition: background 0.5s, padding 0.4s;
+    padding: 24px 56px;
+    background: transparent;
   }
-  nav.scrolled {
-    background: transparent !important;
-    box-shadow: none !important;
-    border-bottom: none !important;
-    backdrop-filter: none !important;
-    padding: 18px 56px;
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .nav-logo-text {
-    display: flex;
-    align-items: baseline;
-    gap: 5px;
-    line-height: 1;
-  }
-  .nav-logo-naveria {
-    font-family: 'Nevan RUS', serif;
-    font-weight: 400;
-    font-size: 20px;
-    color: var(--white);
-  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo-text { display: flex; align-items: baseline; gap: 6px; line-height: 1; }
+  .nav-logo-naveria,
   .nav-logo-space {
     font-family: 'Nevan RUS', serif;
     font-weight: 400;
     font-size: 20px;
-    color: var(--gold);
   }
+  .nav-logo-naveria { color: var(--white); }
+  .nav-logo-space { color: var(--gold); }
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     list-style: none;
     align-items: center;
   }
   .nav-links a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(237,233,227,0.55);
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(244,241,234,0.62);
     text-decoration: none;
     transition: color 0.25s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--gold);
-    transition: width 0.3s ease;
   }
   .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { width: 100%; }
   .nav-cta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold) !important;
-    border: 1px solid rgba(196,135,59,0.5);
-    padding: 8px 20px;
-    text-decoration: none;
-    transition: background 0.25s, color 0.25s, border-color 0.25s !important;
+    color: var(--white) !important;
+    border: 1px solid rgba(244,241,234,0.22);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: border-color 0.25s, color 0.25s, background 0.25s !important;
   }
-  .nav-cta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
-  .nav-cta::after { display: none !important; }
+  .nav-cta:hover {
+    border-color: var(--gold);
+    color: var(--white) !important;
+    background: rgba(200,143,77,0.12);
+  }
+  .nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--white);
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .nav-toggle.is-open span:first-child { transform: translateY(3.75px) rotate(45deg); }
+  .nav-toggle.is-open span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
 
-  /* ── HERO ── */
   #hero {
     position: relative;
     width: 100%;
@@ -136,463 +120,288 @@
     display: flex;
     align-items: center;
   }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
+  .hero-bg { position: absolute; inset: 0; overflow: hidden; }
   .hero-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 88%;
+    object-position: 62% 68%;
+    transform-origin: 58% 64%;
     display: block;
     will-change: transform;
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(6,6,6,0.0) 0%,
-      rgba(6,6,6,0.0) 25%,
-      rgba(6,6,6,0.5) 70%,
-      rgba(6,6,6,0.97) 100%
-    );
+    background:
+      linear-gradient(
+        to right,
+        rgba(25,28,25,0.78) 0%,
+        rgba(25,28,25,0.42) 28%,
+        rgba(25,28,25,0.08) 54%,
+        rgba(25,28,25,0.18) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(25,28,25,0.22) 0%,
+        rgba(25,28,25,0.02) 28%,
+        rgba(25,28,25,0.08) 76%,
+        rgba(25,28,25,0.90) 100%
+      );
   }
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 0 56px 4vh;
-    width: 100%;
     display: flex;
-    align-items: end;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 18vh 56px 64px;
   }
+  .hero-copy { max-width: none; }
   .hero-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(72px, 9vw, 136px);
-    font-weight: 700;
-    line-height: 0.92;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(64px, 12vw, 168px);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
     color: var(--white);
-    perspective: 1000px;
   }
   .hero-line {
     display: block;
     opacity: 0;
-    will-change: transform, opacity, filter;
-  }
-  .hero-line-speed {
-    animation: heroPopUp 0.9s cubic-bezier(0.2, 0.95, 0.2, 1) 0.12s forwards;
+    animation: heroIn 0.9s ease 0.2s forwards;
   }
   .hero-line-is {
-    animation: heroSlideLeft 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
-  }
-  .hero-line-deterrence {
-    font-style: italic;
     font-weight: 300;
-    color: var(--gold-lt);
-    animation: heroSlideLeft 1.05s cubic-bezier(0.2, 1, 0.3, 1) 0.86s forwards;
+    font-style: italic;
+    color: var(--gold);
+    animation-delay: 0.42s;
   }
   .hero-subline {
-    font-family: 'Barlow', sans-serif;
-    font-size: 16px;
+    font-size: clamp(18px, 1.7vw, 24px);
     font-weight: 300;
-    line-height: 1.75;
-    letter-spacing: 0.01em;
-    color: rgba(237,233,227,0.65);
-    max-width: 640px;
-    margin-top: 14px;
-    border-left: 1px solid var(--gold);
-    padding-left: 20px;
+    line-height: 1.4;
+    color: rgba(244,241,234,0.82);
+    max-width: 24em;
+    margin-top: 26px;
     opacity: 0;
-    transform: translateY(16px);
-    text-transform: none;
-    font-style: normal;
-    animation: heroIn 0.75s cubic-bezier(0.22,1,0.36,1) 1.95s forwards;
-  }
-  @keyframes heroPopUp {
-    0% {
-      opacity: 0;
-      transform: translateY(58px) scale(0.86);
-      filter: blur(6px);
-    }
-    70% {
-      opacity: 1;
-      transform: translateY(-4px) scale(1.03);
-      filter: blur(0);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
-    }
-  }
-  @keyframes heroSlideLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-140px) skewX(8deg);
-      filter: blur(8px);
-    }
-    68% {
-      opacity: 1;
-      transform: translateX(6px) skewX(0deg);
-      filter: blur(0);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0) skewX(0deg);
-      filter: blur(0);
-    }
+    animation: heroIn 0.9s ease 0.7s forwards;
   }
   @keyframes heroIn {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-      filter: blur(3px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-scroll {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    animation: pulseScroll 2.4s ease-in-out infinite;
-  }
-  .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); }
-  .scroll-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-  }
-  @keyframes pulseScroll {
-    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
-    50%       { opacity: 1;   transform: translateX(-50%) translateY(8px); }
-  }
-
-  /* ── SECTION COMMON ── */
-  .section-wrap { padding: 112px 56px; border-top: 1px solid var(--line); }
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 52px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 28px; height: 1px;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  /* ── PLATFORM ── */
-  .platform-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 72px;
-    align-items: end;
-  }
-  .platform-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(44px, 5vw, 68px);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 0.95;
-  }
-  .platform-title em { font-style: italic; font-weight: 300; color: var(--gold-lt); }
-  .platform-intro {
-    font-size: 15px;
-    line-height: 1.8;
-    color: rgba(237,233,227,0.5);
-    max-width: 400px;
-  }
-
-  .capabilities {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .section-wrap {
+    padding: 128px 56px;
     border-top: 1px solid var(--line);
   }
-  .cap-item {
-    padding: 44px 36px;
-    border-right: 1px solid var(--line);
-    position: relative;
-    transition: background 0.4s;
-  }
-  .cap-item:last-child { border-right: none; }
-  .cap-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
-  }
-  .cap-item:hover { background: rgba(196,135,59,0.04); }
-  .cap-item:hover::before { transform: scaleX(1); }
-  .cap-number {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 400;
     color: var(--muted);
     margin-bottom: 28px;
   }
-  .cap-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .cap-desc {
-    font-size: 14px;
-    line-height: 1.85;
-    color: rgba(237,233,227,0.45);
-  }
 
-  /* ── NAVERIAISM / TECH ── */
-  .tech-grid {
+  .work-lead {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    max-width: 620px;
+    color: rgba(244,241,234,0.78);
+  }
+  .work-pillars {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 40px;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    max-width: 720px;
+  }
+  .pillar-name {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .pillar-note {
+    display: block;
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(244,241,234,0.42);
+  }
+  .hiring-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  .section-title em { font-style: italic; font-weight: 300; color: var(--gold); }
+  .hiring-copy {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(244,241,234,0.52);
+    max-width: 320px;
+  }
+  .hiring-link {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,143,77,0.35);
+    padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .hiring-link:hover { color: var(--gold-lt); border-color: var(--gold-lt); }
+
+  .founders-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: start;
-  }
-  .tech-heading {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(40px, 4.5vw, 64px);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 0.95;
-    margin-bottom: 24px;
-  }
-  .tech-heading em { font-style: italic; font-weight: 300; color: var(--gold-lt); display: block; }
-  .tech-body {
-    font-size: 15px;
-    line-height: 1.85;
-    color: rgba(237,233,227,0.5);
-    margin-bottom: 32px;
-  }
-  .tech-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .pill {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(196,135,59,0.35);
-    padding: 6px 14px;
-  }
-  .sim-screens {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .sim-screen {
-    width: 100%;
-    aspect-ratio: 16/10;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-    display: block;
-  }
-  .sim-screen:hover { opacity: 1; }
-  .sim-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 6px;
-  }
-
-  /* ── FOUNDERS ── */
-  .founders-row {
-    display: flex;
-    gap: 0;
-    border-top: 1px solid var(--line);
+    gap: 72px 64px;
   }
   .founder-item {
-    flex: 1;
-    padding: 48px 40px;
-    border-right: 1px solid var(--line);
-    transition: background 0.3s;
     display: flex;
-    gap: 28px;
+    flex-direction: column;
+    gap: 22px;
     align-items: flex-start;
+    max-width: 460px;
   }
-  .founder-item:last-child { border-right: none; }
-  .founder-item:hover { background: rgba(237,233,227,0.02); }
   .founder-photo {
-    width: 80px;
-    height: 80px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
     flex-shrink: 0;
-    border: 1px solid var(--line);
-    filter: grayscale(20%);
-    transition: filter 0.3s;
   }
-  .founder-item:hover .founder-photo { filter: grayscale(0%); }
-  .founder-info { flex: 1; }
   .founder-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
   }
   .founder-role {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 13px;
     color: var(--gold);
     margin-bottom: 16px;
   }
   .founder-bio {
-    font-size: 13px;
-    line-height: 1.8;
-    color: rgba(237,233,227,0.45);
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(244,241,234,0.55);
   }
+  .founder-bio + .founder-bio { margin-top: 12px; }
   .founder-link {
     display: inline-block;
-    margin-top: 16px;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    margin-top: 18px;
+    font-size: 14px;
     color: var(--muted);
     text-decoration: none;
     transition: color 0.25s;
   }
   .founder-link:hover { color: var(--gold); }
 
-  /* ── CONTACT ── */
   #contact {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    padding: 120px 56px 100px;
+    text-align: left;
+    padding: 128px 56px 112px;
     border-top: 1px solid var(--line);
   }
-  .contact-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(52px, 6.5vw, 96px);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 0.9;
-    max-width: 860px;
+  .contact-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
   }
-  .contact-headline em { font-style: italic; font-weight: 300; color: var(--gold-lt); }
-  .contact-sub {
-    font-size: 14px;
-    color: rgba(237,233,227,0.4);
-    max-width: 440px;
-    line-height: 1.8;
+  .contact-headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    max-width: 480px;
+  }
+  .contact-headline em { font-style: italic; font-weight: 300; color: var(--gold); }
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
   }
   .contact-btn {
     display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 400;
     color: var(--bg);
     background: var(--gold);
-    padding: 16px 52px;
+    padding: 12px 22px;
+    border-radius: 999px;
     text-decoration: none;
-    transition: background 0.25s, transform 0.2s;
+    transition: background 0.25s;
   }
-  .contact-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .contact-btn:hover { background: var(--gold-lt); }
   .contact-email {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 15px;
     color: var(--muted);
     text-decoration: none;
     transition: color 0.25s;
   }
   .contact-email:hover { color: var(--gold); }
 
-  /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--line);
-    padding: 32px 56px;
+    padding: 28px 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .footer-logo {
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
     display: flex;
     align-items: baseline;
-    gap: 5px;
+    gap: 6px;
   }
-  .footer-logo .fl-naveria {
-    font-family: 'Nevan RUS', serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--muted);
-  }
+  .footer-logo .fl-naveria,
   .footer-logo .fl-space {
     font-family: 'Nevan RUS', serif;
-    font-weight: 400;
     font-size: 14px;
-    color: var(--gold);
   }
+  .footer-logo .fl-naveria { color: var(--muted); }
+  .footer-logo .fl-space { color: var(--gold); }
   .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    font-size: 13px;
     color: var(--muted);
   }
+  .footer-copy a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .footer-copy a:hover { color: var(--gold); }
 
-  /* ── REVEAL ── */
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.22s; }
-  .reveal-delay-3 { transition-delay: 0.34s; }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
 
-  /* ── JET 3D CANVAS ── */
   #jet-canvas {
     position: fixed;
     inset: 0;
@@ -600,92 +409,49 @@
     pointer-events: none;
     background: transparent;
   }
+  #hero, .section-wrap, #contact, footer { position: relative; z-index: 1; }
+  nav { z-index: 100; }
+  body { isolation: isolate; }
 
-  /* push all section content above canvas */
-  nav, #hero, .section-wrap, #contact, footer {
-    position: relative;
-    z-index: 1;
-  }
-  body {
-    isolation: isolate;
-  }
-
-  /* ── MANUFACTURING ── */
-  .mfg-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 2px;
-    margin-bottom: 32px;
-  }
-  .mfg-wide {
-    grid-column: 1 / -1;
-  }
-  .mfg-item {
-    position: relative;
-    overflow: hidden;
-    background: #0a0a0a;
-  }
-  .mfg-item img {
-    width: 100%;
-    height: 340px;
-    object-fit: cover;
-    display: block;
-    opacity: 0.75;
-    transition: opacity 0.4s, transform 0.5s;
-    filter: grayscale(20%);
-  }
-  .mfg-wide img { height: 420px; object-fit: contain; background: #0d0d0d; }
-  .mfg-item:hover img { opacity: 0.95; transform: scale(1.02); filter: grayscale(0%); }
-  .mfg-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 20px 24px;
-    background: linear-gradient(to top, rgba(6,6,6,0.9) 0%, transparent 100%);
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(237,233,227,0.6);
-  }
-  .mfg-tag {
-    display: block;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .mfg-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-  }
-
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--gold-lt); }
-  * { scrollbar-width: thin; scrollbar-color: var(--gold) var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(200,143,77,0.45); }
+  * { scrollbar-width: thin; scrollbar-color: rgba(200,143,77,0.45) var(--bg); }
 
-  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px 24px 24px;
+      background: rgba(25,28,25,0.97);
+      border-bottom: 1px solid var(--line);
+      z-index: 120;
+    }
+    .nav-links.is-open { display: flex; }
+    .nav-links a { display: block; padding: 14px 0; font-size: 17px; }
+    .nav-cta { display: inline-block; margin-top: 8px; width: fit-content; }
+  }
   @media (max-width: 900px) {
-    nav, nav.scrolled { padding: 18px 24px; }
-    .section-wrap { padding: 72px 24px; }
-    .hero-content { padding: 0 24px 60px; }
-    .platform-header { grid-template-columns: 1fr; }
-    .capabilities { grid-template-columns: 1fr; }
-    .cap-item { border-right: none; border-bottom: 1px solid var(--line); }
-    .tech-grid { grid-template-columns: 1fr; }
-    .founders-row { flex-direction: column; }
-    .founder-item { border-right: none; border-bottom: 1px solid var(--line); }
-    #contact { padding: 72px 24px 64px; }
-    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+    nav { padding: 18px 24px; }
+    .section-wrap { padding: 88px 24px; }
+    .hero-content { padding: 112px 24px 48px; }
+    .hero-copy { max-width: none; }
+    .founders-row { grid-template-columns: 1fr; gap: 40px; }
+    .work-pillars { grid-template-columns: 1fr; gap: 22px; max-width: none; }
+    #contact { padding: 88px 24px 80px; }
+    .contact-inner { align-items: flex-start; }
+    footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
   }
   @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .hero-headline { font-size: 56px; }
+    .hero-headline { font-size: clamp(58px, 16vw, 76px); }
+    .hero-subline { font-size: 18px; margin-top: 20px; }
   }
 </style>
 </head>
@@ -701,12 +467,14 @@
     <span class="nav-logo-text"><span class="nav-logo-naveria">Naveria</span><span class="nav-logo-space">Space</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#platform">Platform</a></li>
-    <li><a href="#technology">Technology</a></li>
-    <li><a href="#manufacturing">Manufacturing</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="https://cal.com/naveria.space" target="_blank" class="nav-cta">Book a Call</a></li>
+    <li class="nav-priority"><a href="careers/">Careers</a></li>
+    <li class="nav-priority"><a href="https://cal.com/naveria.space" target="_blank" class="nav-cta">Book a call</a></li>
   </ul>
+  <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -716,170 +484,96 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-headline">
-      <span class="hero-line hero-line-speed">Speed</span>
-      <span class="hero-line hero-line-is">Is</span>
-      <span class="hero-line hero-line-deterrence">Deterrence.</span>
-      <p class="hero-subline">Designing high-speed UAV systems for aerial targets, loitering munitions, and supersonic strike missions.</p>
+    <div class="hero-copy">
+      <h1 class="hero-headline">
+        <span class="hero-line">Aircraft</span>
+        <span class="hero-line hero-line-is">at speed.</span>
+      </h1>
+      <p class="hero-subline">We design and build UAV systems.</p>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <span class="scroll-text">Scroll</span>
-    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- PLATFORM -->
-<div class="section-wrap" id="platform">
-  <div class="section-label reveal">01 / Platform</div>
-  <div class="platform-header">
-    <h2 class="platform-title reveal reveal-delay-1">
-      One Airframe.<br><em>Three Missions.</em>
-    </h2>
-    <p class="platform-intro reveal reveal-delay-2">
-      A modular, high-speed architecture designed to operate across the full spectrum of modern aerial operations.
-    </p>
-  </div>
-
-  <div class="capabilities">
-    <div class="cap-item reveal reveal-delay-1">
-      <div class="cap-number">01</div>
-      <h3 class="cap-title">Aerial<br>Target</h3>
-      <p class="cap-desc">High-speed aerial target systems for live-fire training and weapon system evaluation. Replicates the kinematic profile of advanced threat platforms.</p>
-    </div>
-    <div class="cap-item reveal reveal-delay-2">
-      <div class="cap-number">02</div>
-      <h3 class="cap-title">Loitering<br>Munition</h3>
-      <p class="cap-desc">Autonomous loitering munition variant for precision engagement. Designed with abort and re-acquire capability.</p>
-    </div>
-    <div class="cap-item reveal reveal-delay-3">
-      <div class="cap-number">03</div>
-      <h3 class="cap-title">Supersonic<br>Platform</h3>
-      <p class="cap-desc">Purpose-built supersonic airframe for missions where conventional UAVs cannot operate. Built from the ground up for speed-critical roles.</p>
-    </div>
-  </div>
-</div>
-
-<!-- TECHNOLOGY -->
-<div class="section-wrap" id="technology">
-  <div class="section-label reveal">02 / Technology</div>
-  <div class="tech-grid">
-    <div>
-      <h2 class="tech-heading reveal reveal-delay-1">
-        In-house<br><em>Flight Software</em>
-      </h2>
-      <p class="tech-body reveal reveal-delay-2">
-        We develop our own flight control stack - from autopilot algorithms to simulation infrastructure. NaveriaSim provides a full-fidelity environment for software-in-the-loop and hardware-in-the-loop testing, enabling rapid iteration without leaving the lab.
-      </p>
-      <div class="tech-pills reveal reveal-delay-3">
-        <span class="pill">Flight Control</span>
-        <span class="pill">SIL / HIL</span>
-        <span class="pill">NaveriaSim</span>
-        <span class="pill">Telemetry</span>
-        <span class="pill">Autonomous Nav</span>
-      </div>
-    </div>
-    <div class="sim-screens reveal reveal-delay-2">
-      <div>
-        <img src="navsim1.png" alt="NaveriaSim - vehicle simulation" class="sim-screen">
-        <div class="sim-caption">NaveriaSim - vehicle HIL session</div>
-      </div>
-      <div>
-        <img src="navsim2.png" alt="NaveriaSim - orbital / SIL view" class="sim-screen">
-        <div class="sim-caption">NaveriaSim - SIL orbital test</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MANUFACTURING -->
-<div class="section-wrap" id="manufacturing">
-  <div class="section-label reveal">03 / Design & Manufacturing</div>
-  <div class="platform-header">
-    <h2 class="platform-title reveal reveal-delay-1">
-      Built and<br><em>Designed Indigenously.</em>
-    </h2>
-    <p class="platform-intro reveal reveal-delay-2">
-      From simulation to finished part - every component is designed, analysed, and manufactured in-house. Structural FEA, CFD, aerodynamic design, and composite fabrication all under one roof.
-    </p>
-  </div>
-
-  <div class="mfg-grid reveal reveal-delay-2">
-    <div class="mfg-item mfg-wide">
-      <img src="img/analysis.png" alt="Engineering analysis">
-      <div class="mfg-caption">
-        <span class="mfg-tag">Engineering Analysis</span>
-        In-house simulation across structures, aerodynamics, and flight dynamics - FEA, CFD, and beyond
-      </div>
-    </div>
-    <div class="mfg-item">
-      <img src="img/composite.jpeg" alt="Vacuum infusion composite layup">
-      <div class="mfg-caption">
-        <span class="mfg-tag">Composites</span>
-        In-house vacuum infusion - carbon fibre skin fabrication
-      </div>
-    </div>
-    <div class="mfg-item">
-      <img src="img/layup.jpeg" alt="Carbon fibre component assembly">
-      <div class="mfg-caption">
-        <span class="mfg-tag">Assembly</span>
-        Hand layup and structural assembly of airframe components
-      </div>
-    </div>
-  </div>
-
-  <div class="mfg-pills reveal reveal-delay-3">
-    <span class="pill">FEA / CFD</span>
-    <span class="pill">Structural Analysis</span>
-    <span class="pill">Carbon Fibre</span>
-    <span class="pill">Vacuum Infusion</span>
-    <span class="pill">Composite Layup</span>
-    <span class="pill">Aerodynamic Design</span>
-    <span class="pill">In-house Tooling</span>
+<!-- WORK -->
+<div class="section-wrap" id="work">
+  <div class="section-inner">
+    <div class="section-label reveal">Work</div>
+    <p class="work-lead reveal reveal-delay-1">A small team in India. We design the airframe, write the flight software, and run the simulation in the same place.</p>
+    <ul class="work-pillars reveal reveal-delay-2">
+      <li>
+        <span class="pillar-name">Airframe</span>
+        <span class="pillar-note">Structures and composites.</span>
+      </li>
+      <li>
+        <span class="pillar-name">Software</span>
+        <span class="pillar-note">Flight control and onboard code.</span>
+      </li>
+      <li>
+        <span class="pillar-name">Simulation</span>
+        <span class="pillar-note">Structures and flight, in-house.</span>
+      </li>
+    </ul>
   </div>
 </div>
 
 <!-- TEAM -->
 <div class="section-wrap" id="team">
-  <div class="section-label reveal">04 / Team</div>
-  <div class="founders-row">
-    <div class="founder-item reveal reveal-delay-1">
-      <img src="img/aman.avif" alt="Aman Kumar Singh" class="founder-photo">
-      <div class="founder-info">
-        <div class="founder-name">Aman Kumar Singh</div>
-        <div class="founder-role">Co-Founder</div>
-        <p class="founder-bio">IIT Kharagpur '25. Building the flight software stack and simulation infrastructure at Naveria - from physics-accurate SIL pipelines to full HITL integration in NaveriaSim.</p>
-        <a href="https://www.linkedin.com/in/aman-kumar-s9/" target="_blank" class="founder-link">LinkedIn →</a>
+  <div class="section-inner">
+    <div class="section-label reveal">Team</div>
+    <div class="founders-row">
+      <div class="founder-item reveal reveal-delay-1">
+        <img src="img/aman.avif" alt="Aman Kumar Singh" class="founder-photo">
+        <div class="founder-info">
+          <div class="founder-name">Aman Kumar Singh</div>
+          <div class="founder-role">Co-founder, flight software</div>
+          <p class="founder-bio">IIT Kharagpur ’25. Aman writes the flight software at Naveria, and the simulation that sits around it. Control, onboard code, and the tools used to try that code before it leaves the lab.</p>
+          <p class="founder-bio">He started the company with Ved so software and the airframe could be built in the same place.</p>
+          <a href="https://www.linkedin.com/in/aman-kumar-s9/" target="_blank" class="founder-link">LinkedIn</a>
+        </div>
       </div>
-    </div>
-    <div class="founder-item reveal reveal-delay-2">
-      <img src="img/ved.avif" alt="Ved Takte" class="founder-photo">
-      <div class="founder-info">
-        <div class="founder-name">Ved Takte</div>
-        <div class="founder-role">Co-Founder</div>
-        <p class="founder-bio">IIT Kharagpur '28. Building high-speed UAV systems and hypersonic platforms for the next generation of aerial defence.</p>
-        <a href="https://www.linkedin.com/in/ved-takte/" target="_blank" class="founder-link">LinkedIn →</a>
+      <div class="founder-item reveal reveal-delay-2">
+        <img src="img/ved.avif" alt="Ved Takte" class="founder-photo">
+        <div class="founder-info">
+          <div class="founder-name">Ved Takte</div>
+          <div class="founder-role">Co-founder, airframe</div>
+          <p class="founder-bio">IIT Kharagpur ’28. Ved designs the airframe and the systems around it: structures, aerodynamics, and how the vehicle comes together as hardware.</p>
+          <p class="founder-bio">He started Naveria with Aman to keep a small team close to the aircraft, from first drawing to something that can fly.</p>
+          <a href="https://www.linkedin.com/in/ved-takte/" target="_blank" class="founder-link">LinkedIn</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- HIRING -->
+<div class="section-wrap" id="hiring">
+  <div class="section-inner">
+    <div class="section-label reveal">Careers</div>
+    <div class="hiring-header">
+      <h2 class="section-title reveal reveal-delay-1">We’re <em>hiring.</em></h2>
+      <p class="hiring-copy reveal reveal-delay-2">A small team. Open roles in flight software and airframe.</p>
+    </div>
+    <a href="careers/" class="hiring-link reveal reveal-delay-2">See open roles</a>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <div id="contact">
-  <h2 class="contact-headline reveal">
-    Let's<br><em>Talk.</em>
-  </h2>
-  <p class="contact-sub reveal reveal-delay-1">
-    We're open to conversations with defence programmes, research establishments, and mission partners.
-  </p>
-  <a href="https://cal.com/naveria.space" target="_blank" class="contact-btn reveal reveal-delay-2">Book a Meeting</a>
-  <a href="mailto:aman@naveria.space" class="contact-email reveal reveal-delay-3">aman@naveria.space</a>
+  <div class="contact-inner">
+    <h2 class="contact-headline reveal">
+      Get in <em>touch.</em>
+    </h2>
+    <div class="contact-actions reveal reveal-delay-1">
+      <a href="https://cal.com/naveria.space" target="_blank" class="contact-btn">Book a call</a>
+      <a href="mailto:aman@naveria.space" class="contact-email">aman@naveria.space</a>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><span class="fl-naveria">Naveria</span><span class="fl-space">Space</span></div>
-  <div class="footer-copy">© 2026 Naveria Space</div>
+  <div class="footer-copy">© 2026 Naveria Space · <a href="careers/">Careers</a></div>
 </footer>
 
 <script>
@@ -994,11 +688,11 @@
 
         // Wireframe
         const wireGeo = new THREE.WireframeGeometry(geometry);
-        wireMat = new THREE.LineBasicMaterial({ color: 0xC4873B, transparent: true, opacity: 0.65 });
+        wireMat = new THREE.LineBasicMaterial({ color: 0xC88F4D, transparent: true, opacity: 0.42 });
         rollGroup.add(new THREE.LineSegments(wireGeo, wireMat));
 
         // Glowing points
-        ptMat = new THREE.PointsMaterial({ color: 0xE8B86D, size: 0.06, transparent: true, opacity: 0.8, sizeAttenuation: true });
+        ptMat = new THREE.PointsMaterial({ color: 0xFFBD59, size: 0.055, transparent: true, opacity: 0.55, sizeAttenuation: true });
         rollGroup.add(new THREE.Points(geometry, ptMat));
 
         glowMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
@@ -1008,7 +702,7 @@
         for (let i = 0; i < 40; i++) trailPts.push(size.x * scale * 0.35 + i * 0.3, 0, 0);
         const trailGeo = new THREE.BufferGeometry();
         trailGeo.setAttribute('position', new THREE.Float32BufferAttribute(trailPts, 3));
-        const trailMat = new THREE.LineBasicMaterial({ color: 0xC4873B, transparent: true, opacity: 0.22 });
+        const trailMat = new THREE.LineBasicMaterial({ color: 0xC88F4D, transparent: true, opacity: 0.22 });
         rollGroup.add(new THREE.Line(trailGeo, trailMat));
 
         // Speed lines - behind the drone in local +X (maps to world -X behind travel)
@@ -1020,7 +714,7 @@
           linePts[3] = size.x * scale * 0.3 + len; linePts[4] = 0; linePts[5] = 0;
           const sg = new THREE.BufferGeometry();
           sg.setAttribute('position', new THREE.Float32BufferAttribute(linePts, 3));
-          const sm = new THREE.LineBasicMaterial({ color: 0xC4873B, transparent: true, opacity: 0.15 });
+          const sm = new THREE.LineBasicMaterial({ color: 0xC88F4D, transparent: true, opacity: 0.15 });
           const sl = new THREE.Line(sg, sm);
           sl.position.set(
             (Math.random() - 0.5) * size.x * scale * 0.6,
@@ -1081,8 +775,8 @@
         Math.min((flyX + 80) / 18, 1),
         Math.min((80 - flyX) / 18, 1)
       );
-      wireMat.opacity  = 0.65 * fade;
-      ptMat.opacity    = 0.80 * fade;
+      wireMat.opacity  = 0.42 * fade;
+      ptMat.opacity    = 0.55 * fade;
       glowMat.opacity  = 0.28 * fade;
 
       if (flyX > 85) { resetFly(); maybeStartManeuver(); }
@@ -1094,65 +788,21 @@
 
   // Nav scroll state disabled to keep nav fully transparent
 
-  // Parallax hero + dynamic nose alignment to the "IS" line
   const heroBg = document.getElementById('heroBg');
-  const heroIsLine = document.querySelector('.hero-line-is');
-  const NOSE_POINT = { x: 0.40, y: 0.60 }; // normalized nose point in uav.png
-  const OBJECT_POS = { x: 0.5, y: 0.88 };  // matches CSS object-position: center 88%
-  const HERO_SCALE = 1.06;
-  const PARALLAX_FACTOR = 0.18;
-  const MIN_BASE_OFFSET_Y = -320;
-  const MAX_BASE_OFFSET_Y = 0;
-  let heroBaseOffsetY = 0;
-
-  function getParallaxOffset() {
-    return Math.min(window.scrollY, window.innerHeight) * PARALLAX_FACTOR;
-  }
-
-  function computeHeroNoseOffsetY() {
-    if (!heroBg || !heroIsLine || !heroBg.naturalWidth || !heroBg.naturalHeight || !heroBg.parentElement) return 0;
-    const heroRect = heroBg.parentElement.getBoundingClientRect();
-    const isRect = heroIsLine.getBoundingClientRect();
-
-    const scale = Math.max(
-      heroRect.width / heroBg.naturalWidth,
-      heroRect.height / heroBg.naturalHeight
-    );
-    const renderedW = heroBg.naturalWidth * scale;
-    const renderedH = heroBg.naturalHeight * scale;
-    const cropOffsetY = (heroRect.height - renderedH) * OBJECT_POS.y;
-
-    const noseYUnscaled = heroRect.top + cropOffsetY + NOSE_POINT.y * renderedH;
-    const heroCenterY = heroRect.top + heroRect.height * 0.5;
-    const noseYScaled = heroCenterY + (noseYUnscaled - heroCenterY) * HERO_SCALE;
-    const isCenterY = isRect.top + isRect.height * 0.5;
-    return isCenterY - noseYScaled - getParallaxOffset();
-  }
+  const HERO_SCALE = 1.24;
+  const PARALLAX_FACTOR = 0.12;
 
   function updateHeroBgTransform() {
     if (!heroBg) return;
-    const scrollOffset = getParallaxOffset();
-    heroBg.style.transform = `translateY(${heroBaseOffsetY + scrollOffset}px) scale(${HERO_SCALE})`;
-  }
-
-  function alignHeroNoseToIs() {
-    const desiredOffset = computeHeroNoseOffsetY();
-    // Never move the image downward; that creates a black strip behind transparent nav.
-    heroBaseOffsetY = Math.max(MIN_BASE_OFFSET_Y, Math.min(MAX_BASE_OFFSET_Y, desiredOffset));
-    updateHeroBgTransform();
+    const scrollOffset = Math.min(window.scrollY, window.innerHeight) * PARALLAX_FACTOR;
+    heroBg.style.transform = `translateY(${scrollOffset}px) scale(${HERO_SCALE})`;
   }
 
   if (heroBg) {
-    if (heroBg.complete) {
-      alignHeroNoseToIs();
-    } else {
-      heroBg.addEventListener('load', alignHeroNoseToIs, { once: true });
-    }
+    updateHeroBgTransform();
+    window.addEventListener('resize', updateHeroBgTransform);
+    window.addEventListener('scroll', updateHeroBgTransform, { passive: true });
   }
-
-  window.addEventListener('resize', alignHeroNoseToIs);
-  window.addEventListener('scroll', updateHeroBgTransform, { passive: true });
-  window.addEventListener('load', alignHeroNoseToIs);
 
   // Scroll reveals
   const io = new IntersectionObserver((entries) => {
@@ -1161,6 +811,19 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    const setMenu = (open) => {
+      navLinks.classList.toggle('is-open', open);
+      navToggle.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('is-open')));
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  }
 </script>
 </body>
 </html>
